@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Riesgo Crediticio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* fondo oscuro */
+            color: #ffffff;
+            padding: 20px;
+        }
+        .container {
+            width: 500px;
+            margin: auto;
+            background-color: #1e1e1e; /* gris oscuro para el form */
+            border-radius: 8px;
+            box-shadow: 0 0 10px #000;
+            padding: 20px;
+        }
+        input, select, button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background-color: #2a2a2a;
+            color: white;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .resultado {
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align:center;">Formulario de Predicción</h2>
+        <form method="POST" action="/predecir">
+            <label>Revolving Utilization:</label>
+            <input type="number" step="any" name="rev_util" required>
+
+            <label>Edad:</label>
+            <input type="number" name="age" required>
+
+            <label>Pagos tardíos 30-59 días:</label>
+            <input type="number" name="late_30_59" required>
+
+            <label>Relación deuda/ingreso:</label>
+            <input type="number" step="any" name="debt_ratio" required>
+
+            <label>Líneas de crédito abiertas:</label>
+            <input type="number" name="open_credit" required>
+
+            <label>Pagos tardíos +90 días:</label>
+            <input type="number" name="late_90" required>
+
+            <label>Propiedades inmobiliarias:</label>
+            <input type="number" name="real_estate" required>
+
+            <label>Pagos tardíos 60-89 días:</label>
+            <input type="number" name="late_60_89" required>
+
+            <label>Dependientes:</label>
+            <input type="number" name="dependents" required>
+
+            <label>Grupo de ingreso:</label>
+            <select name="ingreso_grupo" required>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Medio">Medio</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
+                <option value="Extremo">Extremo</option>
+            </select>
+
+            <button type="submit">Predecir</button>
+        </form>
+
+        {% if resultado %}
+        <div class="resultado">{{ resultado }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
